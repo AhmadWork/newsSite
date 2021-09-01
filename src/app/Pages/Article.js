@@ -14,7 +14,7 @@ export default function Article() {
     const dispatch = useDispatch();
     const { fav } = useSelector(userSelector);
     console.log(fav);
-    const isFavorited = fav.filter(item => item.title == article.title)
+    const isFavorited = fav.filter(item => item.title === article.title)
     const token =  localStorage.getItem("token")
     const handleClick = () => {
         if(isFavorited.length < 1){

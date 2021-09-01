@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react"
+import React, { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faHeart,
@@ -8,13 +8,15 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons"
 import { Link, useHistory } from "react-router-dom"
-import { useDispatch} from 'react-redux';
-import { removeUser } from '../features/User/UserSlice';
+import { useDispatch, useSelector} from 'react-redux';
+import { userSelector, removeUser } from '../features/User/UserSlice';
 
 
-function Navbar({token}) {
+function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
-
+  const { email } = useSelector(
+    userSelector
+  );
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -29,11 +31,12 @@ function Navbar({token}) {
       <Link to='/' className="flex-1 no-underline block h-8">
         <img
           src="https://takamolholding.com/wp-content/themes/takamol/assets/images/takamol-logo.png"
+          alt='logo'
           className="h-full"
         />
       </Link>
       <div className="flex-none hidden md:flex md:justify-center md:h-full">
-          {token ? (
+          {email ? (
               <>
                 <div
                     onClick={onLogOut}
@@ -77,7 +80,7 @@ function Navbar({token}) {
       {mobileOpen && (
         <div className="bg-white absolute top-full left-0 flex flex-col w-full py-8 shadow-sm lg:hidden">
           <div className="flex-1 flex flex-col items-center text-xl">
-            {token ? (
+            {email ? (
               <>
                 <div
                     onClick={onLogOut}

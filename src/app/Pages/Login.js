@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { register, errors, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm();
   const { isFetching, isSuccess, isError, errorMessage } = useSelector(
     userSelector
   );
@@ -17,11 +17,6 @@ const Login = () => {
     dispatch(loginUser(data));
   };
 
-  useEffect(() => {
-    return () => {
-      dispatch(clearState());
-    };
-  }, []);
 
   useEffect(() => {
     if (isError) {

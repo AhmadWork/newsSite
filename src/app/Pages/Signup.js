@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 
 const Signup = () => {
   const dispatch = useDispatch();
-  const { register, errors, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm();
   const history = useHistory();
 
   const { isFetching, isSuccess, isError, errorMessage } = useSelector(

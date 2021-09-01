@@ -8,12 +8,11 @@ import Article from "./app/Pages/Article"
 import Navbar from "./components/Navbar"
 import MyFav from "./app/Pages/MyFav"
 function App() {
-  const token =  localStorage.getItem("token")
 
   return (
     <div className="App">
       <Router>
-      <Navbar token={token} />
+      <Navbar  />
         <Switch>
          <Route exact component={Dashboard} path="/" />
          <Route exact component={Article} path="/article" />
