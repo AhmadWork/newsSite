@@ -1,58 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
-
+import React from "react"
+import "./App.css"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import Login from "./app/Pages/Login"
+import Signup from "./app/Pages/Signup"
+import Dashboard from "./app/Pages/Dashboard"
+import Article from "./app/Pages/Article"
+import Navbar from "./components/Navbar"
+import MyFav from "./app/Pages/MyFav"
 function App() {
+  const token =  localStorage.getItem("token")
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      <Router>
+      <Navbar token={token} />
+        <Switch>
+         <Route exact component={Dashboard} path="/" />
+         <Route exact component={Article} path="/article" />
+         <Route exact component={MyFav} path="/fav" />
+          <Route exact component={Login} path="/login" />
+          <Route exact component={Signup} path="/signup" />
+        </Switch>
+      </Router>
     </div>
-  );
+  )
 }
-
-export default App;
+export default App
